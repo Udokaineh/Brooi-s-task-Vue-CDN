@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>to-do app</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="notes-wrapper">
+            <div class="header-container">
+                <div class="notes-header">
+                    <div class="logo">
+                        <h2>{{title}}</h2>
+                        <div class="create-to-do-div">
+                            <button type="button" @click=createButtonClicked class="create-button">Create to-do
+                                items</button>
+                        </div>
+                    </div>
+                    <div class="search">
+                        <input type="text" placeholder="Search to-do items..." id="searchInput" v-model="searchQuery" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="to-do-container">
+                <div ref="notes" class="notes" id="fullPageDisplay">
+
+                    <div class="left-scroll-div" id="halfDisplay">
+                        <div v-for="(items, index) in filteredItems" class="title-para-div" id="titleParaDiv"
+                            tabindex="0" @click="selectItem(items)">
+                            <div class="date-div">
+                                <h4>{{items.date}}</h4>
+                                <i @click=" deleteItem(index)" class="fa fa-trash"></i>
+                            </div>
+                            <div class="title-div">
+                                <h4>{{items.title}}</h4>
+                                <ul id=>
+                                    <li class="status" :class="statusClass">{{statusText}} <i class="fa fa-caret-down"></i>
+                                        <ul class="status-option">
+                                            <li class="inprogress" @click="setStatus('In progress')">In progress
+                                            </li>
+                                            <li class="pending" @click="setStatus('Pending')">Pending</li>
+                                            <li class="completed" @click="setStatus('Completed')">Completed</li>
+                                        </ul>
+                                    </li=>
+                                </ul>
+                            </div>
+                            <div class="para-div">
+                                <p>{{items.para}}</p>
+                            </div>
+                        </div>
+                         <p class="not-found" id="notFound" v-if="filteredItems.length === 0">Item Not Found</p>
+                    </div>
+
+                <div ref="DisplayAndFormDiv" class="display-and-form-div" id="DisplayAndFormDiv">
+                    <div :class="{ 'dummy-display' : dummyDisplay, 'dummy-display-hide': !dummyDisplay}"
+                        id="dummyDisplay">
+                        <h2>Welcome! click on the button above to add to-do items...</h2>
+                    </div>
+                    <div :class="{ 'right-scroll': rightScroll, 'right-scroll-hide': !rightScroll }" id="rightScrollDiv"
+                        v-if=" recentlyAddedItem || selectedItem">
+                        <div class="right-display-div" id="rightDisplayDiv">
+                            <div class="title-edit-div">
+                                <h3 class="right-display-title" id="rightDisplayTitle">{{ recentlyAddedItem ?
+                                    recentlyAddedItem.title : selectedItem.title }}
+                                </h3>
+                                <i @click="editText(selectedItem, selectedItemIndex)" class="fa fa-pen"></i>
+                            </div>
+                            <p class="right-display-para" id="rightDisplayPara">{{ recentlyAddedItem ?
+                                recentlyAddedItem.para : selectedItem.para }} </p>
+                        </div>
+                    </div>
+
+
+                    <form ref="form" id="inputDiv"
+                        :class="{'display-form-hide' : formHidden, 'display-form' : !formHidden}"
+                        @submit.prevent="collectData">
+                        <div class="close-icon-div">
+                            <i class="fa fa-xmark" id="closeIcon" @click=close></i>
+                        </div>
+                        <label for="displayDate" class="display-label">Enter Date</label>
+                        <input v-model="dateValue" ref="dateInput" value="" class="date-input" id="displayDate"
+                            type="date" />
+
+                        <label for="displayTitle" @input="adjustTextareaHeight" class="display-label">Enter
+                            Title</label>
+                        <textarea v-model="titleValue" value="" class="display-title-div" id="displayTitle"></textarea>
+
+                        <label for="paraText" class="display-para">Write Notes Here</label>
+                        <textarea v-model="paraValue" value="" @input="adjustTextareaHeight" class="display-para-div"
+                            id="paraText"></textarea>
+
+                        <button type="submit" class="button">Add to-do items</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
