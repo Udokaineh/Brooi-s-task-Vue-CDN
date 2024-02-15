@@ -24,7 +24,7 @@ body {
 }
 
 .header-container {
-    background-color: #2c2c2c;
+    background-color: #393939;
     padding: 2.5rem;
     height: auto;
     border-radius: 1rem;
@@ -144,7 +144,7 @@ body {
 
 /* left scroll section */
 .to-do-container {
-    background-color: #2c2c2c;
+    background-color: #393939;
     padding: 2.5rem;
     height: auto;
     border-radius: 1rem;
@@ -695,44 +695,50 @@ li {
 
     .display-and-form-div {
         background-color: #161616;
+    }
 
-        .title-para-div {
-            padding: 4px;
-            border-radius: 8px;
-        }
+    .title-para-div {
+        padding: 4px;
+        border-radius: 8px;
+    }
 
-        .title-para-div:hover {
-            padding: 4px;
-            border-radius: 8px;
-        }
+    .title-para-div:hover {
+        padding: 4px;
+        border-radius: 8px;
+    }
 
-        .title-para-div:focus {
-            padding: 4px;
-            border-radius: 8px;
-        }
+    .title-para-div:focus {
+        padding: 4px;
+        border-radius: 8px;
+    }
 
-        .title-div {
-            display: flex;
-            flex-direction: column-reverse;
-            align-items: flex-start;
-            justify-content: flex-start;
-            row-gap: 12px;
-        }
+    .title-div {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        justify-content: flex-start;
+        row-gap: 12px;
+    }
 
-        .title-div h4 {
-            width: 100%;
-
-        }
-
-        .status {
-            padding: 4px 6px;
-        }
-
-        .right-display-div {
-            padding: 0 0 0 8px;
-        }
+    .title-div h4 {
+        width: 100%;
 
     }
+
+    .status {
+        padding: 4px 6px;
+    }
+
+    .right-display-div {
+        padding: 0 0 0 8px;
+    }
+
+    .not-found {
+        color: rgb(161, 52, 52);
+        text-align: left;
+        font-size: 12px;
+    }
+
 }
 
 @media(max-width: 280px) {
