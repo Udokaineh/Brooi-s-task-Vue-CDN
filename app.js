@@ -12,8 +12,7 @@ const app = Vue.createApp({
             recentlyAddedItem: null,
             selectedItem: null,
             statusText: 'Task status',
-            statusClass: '',
-             searchQuery: '',
+            searchQuery: '',
         }
     },
 
@@ -52,7 +51,6 @@ const app = Vue.createApp({
             this.revealRightScroll();
             this.hideForm(this.$refs.form);
             this.revealRightScroll();
-            console.log(this.userArray)
         },
 
         hideRightScroll() {
@@ -92,26 +90,6 @@ const app = Vue.createApp({
             const textarea = event.target;
             textarea.style.height = 'auto';
             textarea.style.height = `${textarea.scrollHeight}px`;
-        },
-
-        setStatus(status) {
-            if (this.selectedItem) {
-                this.statusText = status;
-                this.selectedItem.status = status.toLowerCase(); // Convert to lowercase
-                switch (status.toLowerCase()) { // Convert to lowercase for comparison
-                    case 'in progress':
-                        this.statusClass = 'inprogress';
-                        break;
-                    case 'pending':
-                        this.statusClass = 'pending';
-                        break;
-                    case 'completed':
-                        this.statusClass = 'completed';
-                        break;
-                    default:
-                        this.statusClass = '';
-                }
-            }
         },
 
         searchItems() {
